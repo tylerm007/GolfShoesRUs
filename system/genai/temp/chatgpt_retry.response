@@ -1,0 +1,57 @@
+{
+    "models": [
+        {
+            "classname": "Customer",
+            "code": "class Customer(Base):\n    \"\"\"description: Table storing customer details, each customer can have multiple orders.\"\"\"\n    __tablename__ = 'customers'\n\n    id = Column(Integer, primary_key=True, autoincrement=True)\n    name = Column(String, nullable=False)\n    email = Column(String, unique=True, nullable=True)\n    credit_limit = Column(Float, nullable=False)\n    balance = Column(Float, nullable=False, default=0.0)",
+            "description": "Table storing customer details, each customer can have multiple orders.",
+            "name": "Customer"
+        },
+        {
+            "classname": "Order",
+            "code": "class Order(Base):\n    \"\"\"description: Table storing orders placed by customers, each order can have multiple items.\"\"\"\n    __tablename__ = 'orders'\n\n    id = Column(Integer, primary_key=True, autoincrement=True)\n    customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)\n    order_date = Column(Date, nullable=False)\n    amount_total = Column(Float, nullable=False, default=0.0)",
+            "description": "Table storing orders placed by customers, each order can have multiple items.",
+            "name": "Order"
+        },
+        {
+            "classname": "Item",
+            "code": "class Item(Base):\n    \"\"\"description: Table storing items in orders.\"\"\"\n    __tablename__ = 'items'\n\n    id = Column(Integer, primary_key=True, autoincrement=True)\n    order_id = Column(Integer, ForeignKey('orders.id'), nullable=False)\n    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)\n    quantity = Column(Integer, nullable=False)\n    unit_price = Column(Float, nullable=False)\n    amount = Column(Float, nullable=False, default=0.0)",
+            "description": "Table storing items in orders.",
+            "name": "Item"
+        },
+        {
+            "classname": "Product",
+            "code": "class Product(Base):\n    \"\"\"description: Table storing product details specifically for men's golf shoes.\"\"\"\n    __tablename__ = 'products'\n\n    id = Column(Integer, primary_key=True, autoincrement=True)\n    name = Column(String, nullable=False)\n    unit_price = Column(Float, nullable=False)",
+            "description": "Table storing product details specifically for men's golf shoes.",
+            "name": "Product"
+        }
+    ],
+    "rules": [
+        {
+            "name": "Balance Constraint",
+            "description": "Ensure customer balance does not exceed credit limit.",
+            "code": "Rule.constraint(validate=Customer,\n                as_condition=lambda row: row.balance <= row.credit_limit,\n                error_msg=\"Customer balance ({row.balance}) exceeds credit limit ({row.credit_limit})\")"
+        },
+        {
+            "name": "Customer Balance Sum Rule",
+            "description": "Customer balance derived as sum of orders where date_shipped is null.",
+            "code": "Rule.sum(derive=Customer.balance, as_sum_of=Order.amount_total)"
+        },
+        {
+            "name": "Order Amount Total Sum Rule",
+            "description": "Order amount total is derived as the sum of item amounts.",
+            "code": "Rule.sum(derive=Order.amount_total, as_sum_of=Item.amount)"
+        },
+        {
+            "name": "Item Amount Formula",
+            "description": "Item amount derived as quantity times unit price.",
+            "code": "Rule.formula(derive=Item.amount, as_expression=lambda row: row.quantity * row.unit_price)"
+        },
+        {
+            "name": "Item Price Copy Rule",
+            "description": "Copy item unit price from product unit price.",
+            "code": "Rule.copy(derive=Item.unit_price, from_parent=Product.unit_price)"
+        }
+    ],
+    "test_data": "# Sample test data for Shopping Cart application\n\n# Customers\ncustomer1 = Customer(id=1, name='John Doe', email='john.doe@example.com', credit_limit=1000.0, balance=0.0)\ncustomer2 = Customer(id=2, name='Jane Smith', email='jane.smith@example.com', credit_limit=1500.0, balance=0.0)\n\n# Products\nproduct1 = Product(id=1, name=\"Nike Air\", unit_price=150.0)\nproduct2 = Product(id=2, name=\"Adidas Boost\", unit_price=120.0)\n\n# Orders\norder1 = Order(id=1, customer_id=1, order_date=date(2023, 10, 1), amount_total=0.0)\norder2 = Order(id=2, customer_id=2, order_date=date(2023, 10, 2), amount_total=0.0)\n\n# Items\nitem1 = Item(id=1, order_id=1, product_id=1, quantity=2, unit_price=150.0, amount=0.0)\nitem2 = Item(id=2, order_id=1, product_id=2, quantity=1, unit_price=120.0, amount=0.0)\nitem3 = Item(id=3, order_id=2, product_id=1, quantity=3, unit_price=150.0, amount=0.0)",
+    "name": "ShoppingCartApp"
+}

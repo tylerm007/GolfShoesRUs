@@ -1,0 +1,106 @@
+{
+    "name": "GolfSole Cart",
+    "logo": {
+        "Type": "Logo",
+        "name": "GolfSole Logo",
+        "description": "GolfSole logo featuring a stylized golf shoe"
+    },
+    "sections": [
+        {
+            "title": "Step Up Your Game with GolfSole",
+            "subtitle": "Find Your Perfect Pair",
+            "name": "Hero",
+            "label": "Home",
+            "content": "Welcome to **GolfSole** \u2014 your ultimate destination for premium men's golf shoes. Experience comfort and style on the green like never before with our cutting-edge shopping cart system, designed for golf enthusiasts aiming for excellence.",
+            "order": 1,
+            "Type": "Hero",
+            "images": [
+                {
+                    "Type": "Hero",
+                    "name": "Men's Golf Shoes Hero Image",
+                    "description": "Stylish men's golf shoes displayed on a golf course"
+                }
+            ]
+        },
+        {
+            "title": "About GolfSole",
+            "subtitle": "Where Passion Meets Precision",
+            "name": "About",
+            "label": "About",
+            "content": "At **GolfSole**, we believe in combining passion with precision. Our mission is to offer every golfer a superior selection of shoes that enhance performance while providing unparalleled comfort. Formed in 2020 by golf aficionados, our brand is committed to delivering quality products sourced from top manufacturers worldwide.",
+            "order": 2,
+            "Type": "About",
+            "images": [
+                {
+                    "Type": "Background",
+                    "name": "Golf Course Background",
+                    "description": "A panoramic view of a golf course background"
+                }
+            ]
+        },
+        {
+            "title": "Our Services",
+            "subtitle": "Exceptional Shopping Experience",
+            "name": "Services",
+            "label": "Services",
+            "content": "### Discover Key Features:\n- **Comprehensive Collection**: From spiked to spikeless soles.\n- **User-Friendly Navigation**: Easily find what you're looking for with our refined search filters.\n- **Secure Checkout**: Rest easy with our secure and seamless payment options.\n- **Fast Shipping**: Enjoy rapid and reliable delivery across the globe.",
+            "order": 3,
+            "Type": "Services",
+            "images": [
+                {
+                    "Type": "Infographic",
+                    "name": "Shopping Process Infographic",
+                    "description": "Visual representation of the shopping process"
+                }
+            ]
+        },
+        {
+            "title": "Testimonials",
+            "subtitle": "Hear from Our Customers",
+            "name": "Testimonials",
+            "label": "Testimonials",
+            "content": "**\"GolfSole took my shopping experience to the next level. The quality and comfort of their shoes are unmatched!\"** \u2014 James R.\n\n**\"Fantastic range and user-friendly checkout. Highly recommend to any golfer!\"** \u2014 Mark L.",
+            "order": 4,
+            "Type": "Testimonials",
+            "images": [
+                {
+                    "Type": "Testimonial",
+                    "name": "Customer Testimonial Image",
+                    "description": "Photo of a satisfied customer holding a new pair of golf shoes"
+                }
+            ]
+        },
+        {
+            "title": "Special Offers",
+            "subtitle": "Unlock Exclusive Deals",
+            "name": "Promotions",
+            "label": "Promotions",
+            "content": "### Limited Time Offers:\n- **15% Off** your first purchase.\n- **Free Shipping** on orders over $100.\n- **Bundle Discounts**:  Buy two pairs, save 10%.",
+            "order": 5,
+            "Type": "CallToAction",
+            "images": [
+                {
+                    "Type": "Promotional",
+                    "name": "Special Offer Banner",
+                    "description": "Banner highlighting special discounts and offers"
+                }
+            ]
+        },
+        {
+            "title": "Contact Us",
+            "subtitle": "Get in Touch",
+            "name": "Contact",
+            "label": "Contact",
+            "content": "### We'd love to hear from you!\n\nEmail us at: [support@golfsole.com](mailto:support@golfsole.com)  \nPhone: +1-800-GOLF-SOLE  \nOr fill out our contact form [here](#).\n\nFollow us on [Instagram](#), [Facebook](#), and [Twitter](#) for the latest updates.",
+            "order": 6,
+            "Type": "Contact",
+            "images": [
+                {
+                    "Type": "Icon",
+                    "name": "Contact Icons",
+                    "description": "Social media icons for Instagram, Facebook, and Twitter"
+                }
+            ]
+        }
+    ]
+}

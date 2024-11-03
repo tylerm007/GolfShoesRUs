@@ -1,0 +1,201 @@
+about:
+  date: November 03, 2024 12:38:48
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 3
+  number_tables: 4
+info_toggle_checked: true
+resources:
+  Customer:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: email
+    - name: credit_limit
+      required: true
+    - name: balance
+      required: true
+    - name: id
+    description: Table storing customer details, each customer can have multiple orders.
+    info_list: Table storing customer details, each customer can have multiple orders.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - customer_id
+      name: OrderList
+      resource: Order
+    type: Customer
+    user_key: name
+  Item:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: order_id
+      required: true
+    - name: product_id
+      required: true
+    - name: quantity
+      required: true
+    - name: unit_price
+      required: true
+    - name: amount
+      required: true
+    description: Table storing items in orders.
+    info_list: Table storing items in orders.
+    tab_groups:
+    - direction: toone
+      fks:
+      - order_id
+      name: order
+      resource: Order
+    - direction: toone
+      fks:
+      - product_id
+      name: product
+      resource: Product
+    type: Item
+    user_key: id
+  Order:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: customer_id
+      required: true
+    - name: order_date
+      required: true
+      type: DATE
+    - name: amount_total
+      required: true
+    description: Table storing orders placed by customers, each order can have multiple
+      items.
+    info_list: Table storing orders placed by customers, each order can have multiple
+      items.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - order_id
+      name: ItemList
+      resource: Item
+    - direction: toone
+      fks:
+      - customer_id
+      name: customer
+      resource: Customer
+    type: Order
+    user_key: id
+  Product:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: unit_price
+      required: true
+    - name: id
+    description: Table storing product details specifically for men's golf shoes.
+    info_list: Table storing product details specifically for men's golf shoes.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - product_id
+      name: ItemList
+      resource: Item
+    type: Product
+    user_key: name
+  SPAPage:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: id
+      required: true
+    - name: contact
+    hidden: true
+    tab_groups:
+    - direction: tomany
+      fks:
+      - page_id
+      name: SectionList
+      resource: Section
+    type: SPAPage
+    user_key: name
+  SPASection:
+    attributes:
+    - name: order
+      sort: true
+      type: number
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+    - name: page_id
+    - name: title
+      required: true
+    - name: subtitle
+    - name: label
+    - name: Type
+    - name: paragraph
+      type: textarea
+    - name: content
+      type: textarea
+    - name: id
+    - name: background
+    - name: template
+    - name: style
+      type: json
+    - name: hidden
+      type: boolean
+    hidden: true
+    sort: order
+    tab_groups:
+    - direction: toone
+      fks:
+      - page_id
+      name: page
+      resource: SPAPage
+    type: SPASection
+    user_key: name
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'
